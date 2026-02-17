@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Isizwe Printing Services – Professional printing solutions in Kwa-Thema. NCR books, marketing materials, medical stationery, security printing, and more." />
+  <title>Isizwe Printing Services</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="#home" class="logo-link" aria-label="Isizwe Printing Services – Home">
+        <div class="logo-mark">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="4" y="10" width="40" height="28" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            <rect x="10" y="16" width="28" height="3" rx="1.5" fill="currentColor"/>
+            <rect x="10" y="22" width="20" height="3" rx="1.5" fill="currentColor"/>
+            <rect x="10" y="28" width="24" height="3" rx="1.5" fill="currentColor"/>
+            <circle cx="38" cy="10" r="6" fill="var(--amber)"/>
+            <path d="M35.5 10 L37.5 12 L41 8" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-primary">Isizwe</span>
+          <span class="logo-secondary">Printing Services</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" role="navigation" aria-label="Main navigation">
+        <a href="#about" class="nav-link" data-route="about">About Us</a>
+        <a href="#contact" class="nav-link nav-cta" data-route="contact">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12.004 2.003C6.476 2.003 2 6.478 2 12.007c0 1.771.462 3.435 1.268 4.885L2 22l5.274-1.381A9.956 9.956 0 0012.004 22c5.527 0 9.996-4.478 9.996-9.993 0-5.517-4.469-10.004-9.996-10.004zm0 18.174a8.155 8.155 0 01-4.16-1.14l-.298-.177-3.13.82.835-3.046-.194-.314A8.167 8.167 0 013.828 12c0-4.508 3.668-8.174 8.177-8.174 4.508 0 8.173 3.666 8.173 8.174 0 4.508-3.665 8.177-8.174 8.177z"/>
+          </svg>
+          WhatsApp Us
+        </a>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile nav -->
+    <nav class="mobile-nav" id="mobile-nav" aria-hidden="true">
+      <a href="#home" class="mobile-nav-link" data-route="home">Home</a>
+      <a href="#about" class="mobile-nav-link" data-route="about">About Us</a>
+      <a href="#gallery" class="mobile-nav-link" data-route="gallery">Gallery</a>
+      <a href="#contact" class="mobile-nav-link mobile-nav-cta" data-route="contact">WhatsApp Us</a>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="app-root" role="main">
+    <!-- Pages are injected here by app.js -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo-text">Isizwe Printing Services</span>
+        <p class="footer-tagline">Quality print solutions for every need.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-contact">
+        <p>15695 Mohalbi Street, Riverside, Kwa-Thema</p>
+        <p>Visit by appointment only</p>
+        <a href="https://wa.me/27730708651" target="_blank" rel="noopener" class="footer-wa">
+          073 070 8651
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="footer-year"></span> Isizwe Printing Services. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FAB -->
+  <a href="https://wa.me/27730708651?text=Hello%20Isizwe%20Printing%2C%20I%27d%20like%20a%20quote."
+     target="_blank" rel="noopener"
+     class="wa-fab" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12.004 2.003C6.476 2.003 2 6.478 2 12.007c0 1.771.462 3.435 1.268 4.885L2 22l5.274-1.381A9.956 9.956 0 0012.004 22c5.527 0 9.996-4.478 9.996-9.993 0-5.517-4.469-10.004-9.996-10.004zm0 18.174a8.155 8.155 0 01-4.16-1.14l-.298-.177-3.13.82.835-3.046-.194-.314A8.167 8.167 0 013.828 12c0-4.508 3.668-8.174 8.177-8.174 4.508 0 8.173 3.666 8.173 8.174 0 4.508-3.665 8.177-8.174 8.177z"/>
+    </svg>
+    <span class="wa-fab-label">Get a Quote</span>
+  </a>
+
+  <script src="app.js"></script>
+</body>
+</html>
