@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gallery | Isizwe Print</title>
+  <meta name="description" content="Isizwe Print gallery — browse examples by category." />
+
+  <style>
+    :root{
+      --bg:#F6F8FB;
+      --panel:#ffffff;
+      --line:#E5EAF2;
+      --text:#0F172A;
+      --muted:#64748B;
+      --accent:#0D9488;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    a{color:inherit;text-decoration:none}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line)}
+    .wrap{max-width:1100px;margin:0 auto;padding:14px 16px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);object-fit:cover;background:#fff}
+    .brand-title{font-weight:900;margin:0;font-size:15px}
+    .brand-sub{margin:2px 0 0;color:var(--muted);font-size:12px}
+    nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .navlink{padding:8px 12px;border-radius:10px;font-weight:800}
+    .navlink:hover{background:#EEF2F7}
+
+    /* Page */
+    h1{margin:16px 0 6px;font-size:22px;font-weight:950}
+    .sub{margin:0 0 14px;color:var(--muted)}
+
+    /* Filter tabs */
+    .tabs{
+      display:flex;gap:8px;flex-wrap:wrap;
+      position:sticky; top:68px; z-index:9;
+      padding:10px 0;
+      background:linear-gradient(#F6F8FB 80%, rgba(246,248,251,0));
+    }
+    .tab{
+      border:1px solid var(--line);
+      background:var(--panel);
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:13px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .tab:hover{background:#EEF2F7}
+    .tab.active{
+      border-color:rgba(13,148,136,.35);
+      box-shadow:0 0 0 3px rgba(13,148,136,.10) inset;
+    }
+
+    /* Gallery grid */
+    .card{
+      border:1px solid var(--line);
+      background:var(--panel);
+      border-radius:16px;
+      padding:14px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+      margin-top:10px;
+    }
+    @media (max-width: 980px){ .grid{grid-template-columns:repeat(3,1fr);} }
+    @media (max-width: 720px){ .grid{grid-template-columns:repeat(2,1fr);} }
+    @media (max-width: 520px){ .grid{grid-template-columns:1fr;} }
+
+    .ph{
+      width:100%;
+      aspect-ratio: 4 / 3;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#F1F5F9;
+      overflow:hidden;
+      position:relative;
+      cursor:zoom-in;
+    }
+    .ph img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transform:scale(1);
+      transition:transform .18s ease;
+    }
+    .ph:hover img{transform:scale(1.03)}
+    .caption{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    /* Lightbox */
+    .lb{
+      position:fixed; inset:0; z-index:999;
+      background:rgba(0,0,0,.78);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+    }
+    .lb.open{display:flex}
+    .lb-inner{
+      width:min(1100px, 100%);
+      max-height:92vh;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .lb-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      color:#fff;
+    }
+    .lb-title{font-weight:900}
+    .lb-btns{display:flex;gap:8px;align-items:center}
+    .lb-btn{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.18);
+      color:#fff;
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:900;
+      cursor:pointer;
+      user-select:none;
+    }
+    .lb-btn:hover{background:rgba(255,255,255,.18)}
+    .lb-imgwrap{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .lb-img{
+      max-width:100%;
+      max-height:78vh;
+      display:block;
+    }
+
+    /* Floating WhatsApp */
+    .wa{
+      position:fixed;right:14px;bottom:14px;z-index:20;
+      background:var(--accent);
+      color:#fff;
+      padding:12px 14px;
+      border-radius:999px;
+      font-weight:900;
+    }
+    .wa:hover{filter:brightness(.95)}
+
+    footer{border-top:1px solid var(--line);margin-top:22px}
+    footer .wrap{color:var(--muted);font-size:13px}
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap topbar">
+      <div class="brand">
+        <img class="logo" src="/assets/logo.png" alt="Isizwe Print logo">
+        <div>
+          <div class="brand-title">Isizwe Print</div>
+          <div class="brand-sub">Gallery</div>
+        </div>
+      </div>
+
+      <nav>
+        <a class="navlink" href="/index.html">Home</a>
+        <a class="navlink" href="https://wa.me/27730708651?text=Hi%20Isizwe%20Print%2C%20I%20need%20a%20quote." target="_blank" rel="noreferrer">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>Gallery</h1>
+    <p class="sub">Choose a category to view examples. Tap an image to zoom.</p>
+
+    <!-- Filter Tabs -->
+    <div class="tabs" id="tabs"></div>
+
+    <!-- Gallery -->
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+        <strong id="activeTitle">All</strong>
+        <span class="caption" id="countLabel"></span>
+      </div>
+      <div class="grid" id="grid"></div>
+      <div class="caption" id="hint"></div>
+    </div>
+
+    <footer>
+      <div class="wrap">
+        © <span id="y"></span> Isizwe Print
+      </div>
+    </footer>
+  </main>
+
+  <a class="wa" href="https://wa.me/27730708651?text=Hi%20Isizwe%20Print%2C%20I%20need%20a%20quote." target="_blank" rel="noreferrer">WhatsApp</a>
+
+  <!-- Lightbox -->
+  <div class="lb" id="lb" aria-hidden="true">
+    <div class="lb-inner">
+      <div class="lb-top">
+        <div class="lb-title" id="lbTitle">Preview</div>
+        <div class="lb-btns">
+          <button class="lb-btn" id="prevBtn" type="button">← Prev</button>
+          <button class="lb-btn" id="nextBtn" type="button">Next →</button>
+          <button class="lb-btn" id="closeBtn" type="button">Close ✕</button>
+        </div>
+      </div>
+      <div class="lb-imgwrap">
+        <img class="lb-img" id="lbImg" alt="Gallery preview" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =========
+    // Gallery data (smart auto-path generator)
+    // Naming rule:
+    // /assets/gallery/<folder>/1.webp, 2.webp, 3.webp...
+    // =========
+    function images(folder, total) {
+      return Array.from({ length: total }, (_, i) =>
+        `/assets/gallery/${folder}/${i + 1}.webp`
+      );
+    }
+
+    const SECTIONS = [
+      { id: "all", title: "All", images: [] },
+      { id: "medical", title: "Medical Stationery", images: images("medical", 20) },
+      { id: "general", title: "General Printing", images: images("general", 20) },
+      { id: "marketing", title: "Marketing", images: images("marketing", 15) },
+      { id: "ncr", title: "NCR Books", images: images("ncr", 15) },
+      { id: "schools", title: "Schools & Churches", images: images("schools", 15) },
+      { id: "security", title: "Security Stationery", images: images("security", 15) },
+      { id: "funeral", title: "Funeral Homes", images: images("funeral", 15) },
+      { id: "events", title: "Events", images: images("events", 15) },
+    ];
+
+    // =========
+    // Performance: lazy + decode, and only render selected category
+    // =========
+    const tabsEl = document.getElementById("tabs");
+    const gridEl = document.getElementById("grid");
+    const activeTitleEl = document.getElementById("activeTitle");
+    const countLabelEl = document.getElementById("countLabel");
+    const hintEl = document.getElementById("hint");
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    let activeId = "medical"; // default landing category (faster than "all")
+    let currentList = [];
+    let currentIndex = 0;
+
+    function makeTab(section){
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "tab" + (section.id === activeId ? " active" : "");
+      btn.textContent = section.title;
+      btn.onclick = () => {
+        activeId = section.id;
+        document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+        btn.classList.add("active");
+        renderActive();
+      };
+      return btn;
+    }
+
+    function buildTabs(){
+      tabsEl.innerHTML = "";
+      // Skip "all" tab if you prefer only categories. Keep it for convenience:
+      SECTIONS.forEach(s => tabsEl.appendChild(makeTab(s)));
+    }
+
+    function getActiveImages(){
+      if(activeId === "all"){
+        return SECTIONS
+          .filter(s => s.id !== "all")
+          .flatMap(s => s.images.map(src => ({ src, label: s.title })));
+      }
+      const sec = SECTIONS.find(s => s.id === activeId);
+      return (sec?.images || []).map(src => ({ src, label: sec?.title || "" }));
+    }
+
+    // Try-load check: if an image is missing, it will show broken icon.
+    // Keep naming consistent and upload matching counts.
+    function renderActive(){
+      const sec = SECTIONS.find(s => s.id === activeId) || SECTIONS[0];
+      activeTitleEl.textContent = sec.title;
+
+      const items = getActiveImages();
+      currentList = items;
+      gridEl.innerHTML = "";
+
+      // Perf: render only this category (not all categories stacked)
+      // Lazy-load every image, with async decoding
+      const frag = document.createDocumentFragment();
+
+      items.forEach((it, idx) => {
+        const wrap = document.createElement("div");
+        wrap.className = "ph";
+        wrap.title = "Click to zoom";
+
+        const img = document.createElement("img");
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.src = it.src;
+        img.alt = it.label || sec.title;
+
+        wrap.appendChild(img);
+
+        wrap.onclick = () => openLightbox(idx);
+
+        frag.appendChild(wrap);
+      });
+
+      gridEl.appendChild(frag);
+
+      countLabelEl.textContent = items.length ? `${items.length} images` : "No images yet";
+      hintEl.textContent =
+        "Tip: Upload images using the naming rule: /assets/gallery/<category>/1.webp, 2.webp, 3.webp...";
+    }
+
+    // =========
+    // Lightbox
+    // =========
+    const lb = document.getElementById("lb");
+    const lbImg = document.getElementById("lbImg");
+    const lbTitle = document.getElementById("lbTitle");
+    const closeBtn = document.getElementById("closeBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function openLightbox(index){
+      currentIndex = index;
+      const item = currentList[currentIndex];
+      if(!item) return;
+
+      lbTitle.textContent = item.label || "Preview";
+      lbImg.src = item.src;
+      lb.classList.add("open");
+      lb.setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox(){
+      lb.classList.remove("open");
+      lb.setAttribute("aria-hidden","true");
+      lbImg.src = "";
+      document.body.style.overflow = "";
+    }
+
+    function showPrev(){
+      if(!currentList.length) return;
+      currentIndex = (currentIndex - 1 + currentList.length) % currentList.length;
+      openLightbox(currentIndex);
+    }
+
+    function showNext(){
+      if(!currentList.length) return;
+      currentIndex = (currentIndex + 1) % currentList.length;
+      openLightbox(currentIndex);
+    }
+
+    closeBtn.onclick = closeLightbox;
+    prevBtn.onclick = showPrev;
+    nextBtn.onclick = showNext;
+
+    // Close on backdrop click
+    lb.addEventListener("click", (e) => {
+      if(e.target === lb) closeLightbox();
+    });
+
+    // Keyboard controls
+    window.addEventListener("keydown", (e) => {
+      if(!lb.classList.contains("open")) return;
+      if(e.key === "Escape") closeLightbox();
+      if(e.key === "ArrowLeft") showPrev();
+      if(e.key === "ArrowRight") showNext();
+    });
+
+    // =========
+    // Init
+    // =========
+    buildTabs();
+    // mark the default tab as active (medical)
+    // tabs are buttons; after buildTabs, re-render active state
+    document.querySelectorAll(".tab").forEach(t => {
+      if(t.textContent === "Medical Stationery") t.classList.add("active");
+    });
+    renderActive();
+  </script>
+</body>
+</html>
+

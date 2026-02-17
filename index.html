@@ -1,104 +1,575 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Isizwe Printing Services – Professional printing solutions in Kwa-Thema. NCR books, marketing materials, medical stationery, security printing, and more." />
-  <title>Isizwe Printing Services</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Isizwe Print</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#FAFAFA;
+      --panel:#FFFFFF;
+      --line:#E8E0F5;
+      --text:#1A0A2E;
+      --muted:#6B5F85;
+      --accent:#F5C800;
+      --accent2:#7B2FBE;
+      --ink:#3A0CA3;
+      --gold:#F5C800;
+      --cream:#FFF9E0;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      font-family:'DM Sans',system-ui,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      /* Subtle halftone dot texture — pure CSS, no external image */
+      background-image:
+        radial-gradient(circle, rgba(58,12,163,.06) 1px, transparent 1px);
+      background-size:22px 22px;
+    }
+
+    a{color:inherit;text-decoration:none}
+
+    /* ─── HEADER ─────────────────────────────── */
+    header{
+      position:sticky;top:0;z-index:10;
+      background:var(--ink);
+      border-bottom:3px solid var(--gold);
+    }
+
+    .wrap{max-width:1100px;margin:0 auto;padding:14px 20px}
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .logo{
+      width:46px;height:46px;
+      border-radius:8px;
+      border:2px solid rgba(255,255,255,.15);
+      object-fit:cover;
+      background:var(--panel);
+    }
+
+    .brand h1{
+      font-family:'Playfair Display',Georgia,serif;
+      font-size:20px;
+      font-weight:900;
+      color:#fff;
+      letter-spacing:.5px;
+    }
+
+    .brand p{
+      margin:2px 0 0;
+      color:rgba(255,255,255,.5);
+      font-size:11px;
+      font-weight:500;
+      text-transform:uppercase;
+      letter-spacing:1.8px;
+    }
+
+    nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+
+    nav a{
+      padding:7px 14px;
+      border-radius:6px;
+      font-weight:700;
+      font-size:13px;
+      color:rgba(255,255,255,.75);
+      border:1px solid transparent;
+      transition:.2s;
+    }
+
+    nav a:hover{
+      color:#fff;
+      background:rgba(255,255,255,.1);
+      border-color:rgba(255,255,255,.15);
+    }
+
+    nav a.cta{
+      background:var(--gold);
+      color:#1A0A2E;
+      border-color:var(--gold);
+    }
+
+    nav a.cta:hover{
+      background:#6a1fa8;
+    }
+
+    /* ─── HERO ────────────────────────────────── */
+    .hero{padding:28px 0 8px}
+
+    .hero .card{
+      background:linear-gradient(135deg,#3A0CA3 0%,#7B2FBE 55%,#C77DFF 100%);
+      border-radius:16px;
+      padding:36px 32px;
+      overflow:hidden;
+      position:relative;
+      border:1px solid rgba(255,255,255,.1);
+    }
+
+    /* Large decorative background letterform */
+    .hero .card::before{
+      content:'IP';
+      position:absolute;
+      right:-20px;
+      top:-30px;
+      font-family:'Playfair Display',serif;
+      font-size:200px;
+      font-weight:900;
+      color:rgba(255,255,255,.04);
+      line-height:1;
+      pointer-events:none;
+      user-select:none;
+    }
+
+    /* Yellow brand stripe — matches Isizwe profile branding */
+    .hero .card::after{
+      content:'';
+      position:absolute;
+      left:0;top:0;bottom:0;
+      width:6px;
+      background:var(--gold);
+      border-radius:16px 0 0 16px;
+    }
+
+    .hero-inner{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .hero-kicker{
+      font-size:11px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:2.5px;
+      color:var(--gold);
+    }
+
+    .hero h2{
+      font-family:'Playfair Display',Georgia,serif;
+      font-size:clamp(26px, 4vw, 38px);
+      font-weight:900;
+      color:#fff;
+      line-height:1.15;
+    }
+
+    .hero p{
+      color:rgba(255,255,255,.5);
+      font-size:14px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-top:4px;
+    }
+
+    .hero p::before{
+      content:'';
+      display:inline-block;
+      width:16px;
+      height:2px;
+      background:var(--gold);
+      flex-shrink:0;
+    }
+
+    /* ─── SECTION TITLE ──────────────────────── */
+    h3.section-title{
+      margin:28px 0 14px;
+      font-family:'Playfair Display',Georgia,serif;
+      font-size:22px;
+      font-weight:900;
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    h3.section-title::after{
+      content:'';
+      flex:1;
+      height:1px;
+      background:linear-gradient(90deg,var(--line),transparent);
+    }
+
+    /* ─── SERVICES ROW ───────────────────────── */
+    .scroll-row{
+      display:flex;
+      gap:14px;
+      overflow-x:auto;
+      padding-bottom:12px;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+    }
+
+    .scroll-row::-webkit-scrollbar{height:4px}
+    .scroll-row::-webkit-scrollbar-track{background:var(--line);border-radius:4px}
+    .scroll-row::-webkit-scrollbar-thumb{background:var(--ink);border-radius:4px}
+
+    .service-card{
+      min-width:230px;
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      cursor:pointer;
+      flex:0 0 auto;
+      scroll-snap-align:start;
+      transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      position:relative;
+    }
+
+    .service-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 12px 32px rgba(26,22,15,.12);
+      border-color:rgba(123,47,190,.35);
+    }
+
+    /* Corner registration mark — printing motif */
+    .service-card::after{
+      content:'';
+      position:absolute;
+      bottom:10px;
+      right:10px;
+      width:14px;
+      height:14px;
+      border-bottom:2px solid var(--line);
+      border-right:2px solid var(--line);
+      opacity:0;
+      transition:.25s;
+    }
+
+    .service-card:hover::after{
+      opacity:1;
+      border-color:var(--accent);
+    }
+
+    .service-card img{
+      width:100%;
+      height:148px;
+      object-fit:cover;
+      border-bottom:2px solid var(--line);
+      background:linear-gradient(135deg,#ede0ff,#fff9e0);
+      display:block;
+      transition:transform .4s ease;
+    }
+
+    .service-card:hover img{
+      transform:scale(1.04);
+    }
+
+    .service-card .img-wrap{
+      overflow:hidden;
+      position:relative;
+    }
+
+    /* Ink overlay on hover */
+    .service-card .img-wrap::after{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg,transparent 50%,rgba(26,22,15,.45));
+      opacity:0;
+      transition:.3s;
+    }
+
+    .service-card:hover .img-wrap::after{
+      opacity:1;
+    }
+
+    .service-card .body{
+      padding:14px 14px 16px;
+    }
+
+    .service-card .title{
+      font-family:'Playfair Display',Georgia,serif;
+      font-weight:700;
+      font-size:15px;
+      color:var(--text);
+      margin:0;
+    }
+
+    .service-card .desc{
+      margin:5px 0 0;
+      color:var(--muted);
+      font-size:12.5px;
+      line-height:1.5;
+    }
+
+    .service-card .arrow{
+      display:inline-block;
+      margin-top:10px;
+      font-size:11px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:1.4px;
+      color:var(--accent);
+    }
+
+    /* Mobile */
+    @media (max-width:640px){
+      .scroll-row{
+        flex-direction:column;
+        overflow-y:auto;
+        overflow-x:hidden;
+        max-height:70vh;
+        scroll-snap-type:none;
+      }
+
+      .service-card{min-width:unset}
+
+      .hero .card::before{font-size:120px;right:-10px}
+    }
+
+    /* ─── WHATSAPP BUTTON ────────────────────── */
+    .wa{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      background:var(--ink);
+      color:#fff;
+      padding:13px 20px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:13px;
+      border:2px solid var(--gold);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      box-shadow:0 6px 24px rgba(58,12,163,.35);
+      transition:.2s;
+      z-index:100;
+    }
+
+    .wa:hover{
+      background:var(--accent2);
+      border-color:var(--gold);
+      transform:scale(1.04);
+    }
+
+    .wa-icon{
+      width:18px;height:18px;
+      flex-shrink:0;
+    }
+
+    /* ─── FOOTER ─────────────────────────────── */
+    footer{
+      border-top:2px solid var(--line);
+      margin-top:32px;
+    }
+
+    footer .wrap{
+      color:var(--muted);
+      font-size:13px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      padding-top:16px;
+      padding-bottom:16px;
+    }
+
+    footer .tagline{
+      font-family:'Playfair Display',serif;
+      font-style:italic;
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    /* ─── FADE-IN ANIMATION ──────────────────── */
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(14px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .hero .card{animation:fadeUp .55s ease both}
+    .service-card:nth-child(1){animation:fadeUp .5s .08s ease both}
+    .service-card:nth-child(2){animation:fadeUp .5s .15s ease both}
+    .service-card:nth-child(3){animation:fadeUp .5s .22s ease both}
+    .service-card:nth-child(4){animation:fadeUp .5s .29s ease both}
+    .service-card:nth-child(5){animation:fadeUp .5s .36s ease both}
+    .service-card:nth-child(6){animation:fadeUp .5s .43s ease both}
+    .service-card:nth-child(7){animation:fadeUp .5s .50s ease both}
+    .service-card:nth-child(8){animation:fadeUp .5s .57s ease both}
+  </style>
 </head>
+
 <body>
 
-  <!-- HEADER -->
-  <header class="site-header" id="site-header">
-    <div class="header-inner">
-      <a href="#home" class="logo-link" aria-label="Isizwe Printing Services – Home">
-        <div class="logo-mark">
-          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect x="4" y="10" width="40" height="28" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
-            <rect x="10" y="16" width="28" height="3" rx="1.5" fill="currentColor"/>
-            <rect x="10" y="22" width="20" height="3" rx="1.5" fill="currentColor"/>
-            <rect x="10" y="28" width="24" height="3" rx="1.5" fill="currentColor"/>
-            <circle cx="38" cy="10" r="6" fill="var(--amber)"/>
-            <path d="M35.5 10 L37.5 12 L41 8" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+  <!-- ─── HEADER ─────────────────────────────── -->
+  <header>
+    <div class="wrap topbar">
+      <div class="brand">
+        <img class="logo" src="/assets/logo.png" alt="Isizwe Print logo">
+        <div>
+          <h1>Isizwe Print</h1>
+          <p>Printing · Design · Stationery</p>
         </div>
-        <div class="logo-text">
-          <span class="logo-primary">Isizwe</span>
-          <span class="logo-secondary">Printing Services</span>
+      </div>
+
+      <nav>
+        <a href="#about">About Us</a>
+        <a href="/gallery.html">Gallery</a>
+        <a class="cta"
+           href="https://wa.me/27730708651?text=Hi%20Isizwe%20Print%2C%20I%20need%20a%20quote."
+           target="_blank">
+          Contact
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── MAIN ───────────────────────────────── -->
+  <main class="wrap">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="card">
+        <div class="hero-inner">
+          <span class="hero-kicker">Est. Kwa-Thema</span>
+          <h2>Isizwe Printing Services</h2>
+          <p>Visit by appointment only &nbsp;·&nbsp; 15695 Mohlabi Street, Riverside, Kwa-Thema</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <h3 class="section-title">Services</h3>
+
+    <div class="scroll-row">
+
+      <a class="service-card" href="/medical.html">
+        <div class="img-wrap">
+          <img src="/assets/placeholders/medical.webp" alt="Medical Stationery">
+        </div>
+        <div class="body">
+          <p class="title">Medical Stationery</p>
+          <p class="desc">Professional pads and patient forms.</p>
+          <span class="arrow">View →</span>
         </div>
       </a>
 
-      <nav class="main-nav" role="navigation" aria-label="Main navigation">
-        <a href="#about" class="nav-link" data-route="about">About Us</a>
-        <a href="#contact" class="nav-link nav-cta" data-route="contact">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-            <path d="M12.004 2.003C6.476 2.003 2 6.478 2 12.007c0 1.771.462 3.435 1.268 4.885L2 22l5.274-1.381A9.956 9.956 0 0012.004 22c5.527 0 9.996-4.478 9.996-9.993 0-5.517-4.469-10.004-9.996-10.004zm0 18.174a8.155 8.155 0 01-4.16-1.14l-.298-.177-3.13.82.835-3.046-.194-.314A8.167 8.167 0 013.828 12c0-4.508 3.668-8.174 8.177-8.174 4.508 0 8.173 3.666 8.173 8.174 0 4.508-3.665 8.177-8.174 8.177z"/>
-          </svg>
-          WhatsApp Us
-        </a>
-      </nav>
+      <a class="service-card" href="/general.html">
+        <div class="img-wrap">
+          <img src="/assets/placeholders/general.webp" alt="General Printing">
+        </div>
+        <div class="body">
+          <p class="title">General Printing</p>
+          <p class="desc">Design, print, bind and laminate.</p>
+          <span class="arrow">View →</span>
+        </div>
+      </a>
 
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <a class="service-card" href="/marketing.html">
+        <div class="img-wrap">
+          <img src="/assets/placeholders/marketing.webp" alt="Marketing">
+        </div>
+        <div class="body">
+          <p class="title">Marketing</p>
+          <p class="desc">Brand your business professionally.</p>
+          <span class="arrow">View →</span>
+        </div>
+      </a>
+
+      <a class="service-card" href="/ncr-books.html">
+        <div class="img-wrap">
+          <img src="/assets/placeholders/ncr.webp" alt="NCR Books">
+        </div>
+        <div class="body">
+          <p class="title">NCR Books</p>
+          <p class="desc">Custom invoice and receipt books.</p>
+          <span class="arrow">View →</span>
+        </div>
+      </a>
+
+      <a class="service-card" href="/schools.html">
+        <div class="img-wrap">
+          <img src="/assets/placeholders/schools.webp" alt="Schools &amp; Churches">
+        </div>
+        <div class="body">
+          <p class="title">Schools &amp; Churches</p>
+          <p class="desc">Reliable admin printing solutions.</p>
+          <span class="arrow">View →</span>
+        </div>
+      </a>
+
+      <a class="service-card" href="/security.html">
+        <div class="img-wrap">
+          <img src="/assets/placeholders/security.webp" alt="Security Stationery">
+        </div>
+        <div class="body">
+          <p class="title">Security Stationery</p>
+          <p class="desc">Registers and control books.</p>
+          <span class="arrow">View →</span>
+        </div>
+      </a>
+
+      <a class="service-card" href="/funeral.html">
+        <div class="img-wrap">
+          <img src="/assets/placeholders/funeral.webp" alt="Funeral Homes">
+        </div>
+        <div class="body">
+          <p class="title">Funeral Homes</p>
+          <p class="desc">Membership books and receipts.</p>
+          <span class="arrow">View →</span>
+        </div>
+      </a>
+
+      <a class="service-card" href="/events.html">
+        <div class="img-wrap">
+          <img src="/assets/placeholders/events.webp" alt="Events">
+        </div>
+        <div class="body">
+          <p class="title">Events</p>
+          <p class="desc">Wristbands and event tickets.</p>
+          <span class="arrow">View →</span>
+        </div>
+      </a>
+
     </div>
 
-    <!-- Mobile nav -->
-    <nav class="mobile-nav" id="mobile-nav" aria-hidden="true">
-      <a href="#home" class="mobile-nav-link" data-route="home">Home</a>
-      <a href="#about" class="mobile-nav-link" data-route="about">About Us</a>
-      <a href="#gallery" class="mobile-nav-link" data-route="gallery">Gallery</a>
-      <a href="#contact" class="mobile-nav-link mobile-nav-cta" data-route="contact">WhatsApp Us</a>
-    </nav>
-  </header>
+    <!-- Footer -->
+    <footer>
+      <div class="wrap">
+        <span>© <span id="y"></span> Isizwe Print</span>
+        <span class="tagline">073 070 8651 &nbsp;·&nbsp; 065 871 2184 &nbsp;·&nbsp; isizweprint@gmail.com</span>
+      </div>
+    </footer>
 
-  <!-- MAIN CONTENT -->
-  <main id="app-root" role="main">
-    <!-- Pages are injected here by app.js -->
   </main>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <span class="footer-logo-text">Isizwe Printing Services</span>
-        <p class="footer-tagline">Quality print solutions for every need.</p>
-      </div>
-      <div class="footer-links">
-        <a href="#home">Home</a>
-        <a href="#about">About Us</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="footer-contact">
-        <p>15695 Mohalbi Street, Riverside, Kwa-Thema</p>
-        <p>Visit by appointment only</p>
-        <a href="https://wa.me/27730708651" target="_blank" rel="noopener" class="footer-wa">
-          073 070 8651
-        </a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; <span id="footer-year"></span> Isizwe Printing Services. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <!-- WHATSAPP FAB -->
-  <a href="https://wa.me/27730708651?text=Hello%20Isizwe%20Printing%2C%20I%27d%20like%20a%20quote."
-     target="_blank" rel="noopener"
-     class="wa-fab" aria-label="Chat on WhatsApp">
-    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-      <path d="M12.004 2.003C6.476 2.003 2 6.478 2 12.007c0 1.771.462 3.435 1.268 4.885L2 22l5.274-1.381A9.956 9.956 0 0012.004 22c5.527 0 9.996-4.478 9.996-9.993 0-5.517-4.469-10.004-9.996-10.004zm0 18.174a8.155 8.155 0 01-4.16-1.14l-.298-.177-3.13.82.835-3.046-.194-.314A8.167 8.167 0 013.828 12c0-4.508 3.668-8.174 8.177-8.174 4.508 0 8.173 3.666 8.173 8.174 0 4.508-3.665 8.177-8.174 8.177z"/>
+  <!-- WhatsApp FAB -->
+  <a class="wa"
+     href="https://wa.me/27730708651?text=Hi%20Isizwe%20Print%2C%20I%20need%20a%20quote."
+     target="_blank">
+    <!-- WhatsApp SVG icon (inline, no external dependency) -->
+    <svg class="wa-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="16" cy="16" r="16" fill="#25D366"/>
+      <path d="M23.5 19.77c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-1.77-.88-2.93-1.57-4.1-3.56-.31-.53.31-.49.89-1.63.1-.2.05-.37-.03-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51H13c-.18 0-.47.07-.72.35-.25.28-.95.93-.95 2.27 0 1.34.97 2.63 1.1 2.81.14.18 1.9 2.9 4.6 4.07 1.71.74 2.38.8 3.24.67.52-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z" fill="white"/>
     </svg>
-    <span class="wa-fab-label">Get a Quote</span>
+    WhatsApp
   </a>
 
-  <script src="app.js"></script>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+
 </body>
 </html>

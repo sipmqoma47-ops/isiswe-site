@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Isizwe Print</title>
+
+  <style>
+    :root{
+      --bg:#F6F8FB;
+      --panel:#ffffff;
+      --line:#E5EAF2;
+      --text:#0F172A;
+      --muted:#64748B;
+      --accent:#0D9488;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    a{color:inherit;text-decoration:none}
+
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:10;
+      background:#fff;
+      border-bottom:1px solid var(--line);
+    }
+
+    .wrap{max-width:1100px;margin:0 auto;padding:14px 16px}
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .logo{
+      width:44px;height:44px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      object-fit:cover;
+      background:#fff;
+    }
+
+    .brand h1{font-size:18px;margin:0;font-weight:900}
+    .brand p{margin:2px 0 0;color:var(--muted);font-size:12px}
+
+    nav{display:flex;gap:10px;flex-wrap:wrap}
+
+    nav a{
+      padding:8px 12px;
+      border-radius:10px;
+      font-weight:700;
+    }
+
+    nav a:hover{
+      background:#EEF2F7;
+    }
+
+    /* Hero */
+    .hero{padding:18px 0}
+    .hero .card{
+      border:1px solid var(--line);
+      background:var(--panel);
+      border-radius:16px;
+      padding:18px;
+    }
+
+    .hero h2{margin:0 0 6px;font-size:24px;font-weight:900}
+    .hero p{margin:0;color:var(--muted)}
+
+    /* Section */
+    h3.section-title{
+      margin:20px 0 10px;
+      font-size:18px;
+      font-weight:900;
+    }
+
+    /* Services row */
+    .scroll-row{
+      display:flex;
+      gap:12px;
+      overflow-x:auto;
+      padding-bottom:8px;
+    }
+
+    .service-card{
+      min-width:240px;
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:14px;
+      overflow:hidden;
+      cursor:pointer;
+      flex:0 0 auto;
+      transition:.2s;
+    }
+
+    .service-card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 6px 18px rgba(0,0,0,.08);
+    }
+
+    .service-card img{
+      width:100%;
+      height:140px;
+      object-fit:cover;
+      border-bottom:1px solid var(--line);
+      background:#f1f5f9;
+    }
+
+    .service-card .body{padding:12px}
+    .service-card .title{font-weight:900;margin:0}
+    .service-card .desc{margin:6px 0 0;color:var(--muted);font-size:13px}
+
+    /* Mobile vertical scroll */
+    @media (max-width:640px){
+      .scroll-row{
+        flex-direction:column;
+        overflow-y:auto;
+        overflow-x:hidden;
+        max-height:70vh;
+      }
+      .service-card{min-width:unset}
+    }
+
+    /* WhatsApp button */
+    .wa{
+      position:fixed;
+      right:14px;
+      bottom:14px;
+      background:var(--accent);
+      color:#fff;
+      padding:12px 14px;
+      border-radius:999px;
+      font-weight:800;
+    }
+
+    footer{
+      border-top:1px solid var(--line);
+      margin-top:22px;
+    }
+
+    footer .wrap{
+      color:var(--muted);
+      font-size:13px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap topbar">
+      <div class="brand">
+        <img class="logo" src="/assets/logo.png" alt="Isizwe Print logo">
+        <div>
+          <h1>Isizwe Print</h1>
+          <p>Printing • Design • Stationery</p>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#about">About Us</a>
+        <a href="/gallery.html">Gallery</a>
+        <a href="https://wa.me/27730708651?text=Hi%20Isizwe%20Print%2C%20I%20need%20a%20quote." target="_blank">
+          Contact
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="card">
+        <h2>Isizwe Printing Services</h2>
+        <p>
+          Visit by appointment only • Riverside, Kwa-Thema
+        </p>
+      </div>
+    </section>
+
+    <h3 class="section-title">Services</h3>
+
+    <div class="scroll-row">
+
+      <a class="service-card" href="/medical.html">
+        <img src="/assets/placeholders/medical.webp">
+        <div class="body">
+          <p class="title">Medical Stationery</p>
+          <p class="desc">Professional pads and patient forms.</p>
+        </div>
+      </a>
+
+      <a class="service-card" href="/general.html">
+        <img src="/assets/placeholders/general.webp">
+        <div class="body">
+          <p class="title">General Printing</p>
+          <p class="desc">Design, print, bind and laminate.</p>
+        </div>
+      </a>
+
+      <a class="service-card" href="/marketing.html">
+        <img src="/assets/placeholders/marketing.webp">
+        <div class="body">
+          <p class="title">Marketing</p>
+          <p class="desc">Brand your business professionally.</p>
+        </div>
+      </a>
+
+      <a class="service-card" href="/ncr-books.html">
+        <img src="/assets/placeholders/ncr.webp">
+        <div class="body">
+          <p class="title">NCR Books</p>
+          <p class="desc">Custom invoice and receipt books.</p>
+        </div>
+      </a>
+      
+      <a class="service-card" href="/schools.html">
+        <img src="/assets/placeholders/schools.webp" alt="Schools & Churches">
+        <div class="body">
+          <p class="title">Schools & Churches</p>
+          <p class="desc">Reliable admin printing solutions.</p>
+        </div>
+      </a>
+
+      <a class="service-card" href="/security.html">
+        <img src="/assets/placeholders/security.webp" alt="Security Stationery">
+        <div class="body">
+          <p class="title">Security Stationery</p>
+          <p class="desc">Registers and control books.</p>
+        </div>
+      </a>
+
+      <a class="service-card" href="/funeral.html">
+        <img src="/assets/placeholders/funeral.webp" alt="Funeral Homes">
+        <div class="body">
+          <p class="title">Funeral Homes</p>
+          <p class="desc">Membership books and receipts.</p>
+        </div>
+      </a> 
+      
+      <a class="service-card" href="/events.html">
+        <img src="/assets/placeholders/events.webp">
+        <div class="body">
+          <p class="title">Events</p>
+          <p class="desc">Wristbands and event tickets.</p>
+        </div>
+      </a>
+
+    </div>
+
+    <footer>
+      <div class="wrap">
+        © <span id="y"></span> Isizwe Print
+      </div>
+    </footer>
+  </main>
+
+  <a class="wa" href="https://wa.me/27730708651?text=Hi%20Isizwe%20Print%2C%20I%20need%20a%20quote." target="_blank">
+    WhatsApp
+  </a>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
